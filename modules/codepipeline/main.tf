@@ -12,7 +12,7 @@ resource "aws_s3_bucket_acl" "codepipeline_bucket_acl" {
 
 resource "aws_codebuild_project" "project" {
     count           = length(local.projects)
-    name            = "{var.env_namespace}_${local.projects[count.index]}"
+    name            = "${var.env_namespace}_${local.projects[count.index]}"
     #name           = "${var.org}_${var.name}_${var.attribute}_${var.env["dev"]}_codebuild_docker_build"
     build_timeout   = "5" #The default is 60 minutes.
     service_role    = aws_iam_role.lambda_codebuild_role.arn
